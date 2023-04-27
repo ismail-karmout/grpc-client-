@@ -1,0 +1,26 @@
+syntax = "proto3";
+option java_package="test.fss" ;
+
+service BankService {
+  rpc convert(ConvertCurrencyRequest) returns (ConvertCurrencyResponse);// Unary model
+  rpc getCurrencyStream(ConvertCurrencyRequest) returns (stream ConvertCurrencyResponse);//Server Streaming model
+  rpc performStream(stream ConvertCurrencyRequest) returns (ConvertCurrencyResponse);// Client streaming model
+  rpc fullCurrencyStream( stream ConvertCurrencyRequest) returns (stream ConvertCurrencyResponse);//Bidirectional streaming model
+
+
+}
+
+message ConvertCurrencyRequest {
+  string currencyFrom=1;
+  string currencyTo = 2 ;
+  double amount = 3;
+ }
+
+message ConvertCurrencyResponse {
+  // Champ(s) du message
+  string currencyFrom=1;
+  string currencyTo = 2 ;
+  double amount = 3;
+  double result = 4;
+
+}
